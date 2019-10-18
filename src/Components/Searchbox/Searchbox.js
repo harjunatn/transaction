@@ -10,7 +10,7 @@ const Searchbox = props => {
         className='search-box__input'
         onChange={props.handleInput}
         type='text'
-        placeholder='Cari nama'
+        placeholder='Search name'
       />
     </div>
   );

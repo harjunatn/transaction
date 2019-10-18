@@ -27,16 +27,16 @@ class Transactions extends Component {
     let date = e.split(' ')[0];
     let splitDate = date.split('-');
     let month = [
-      'Januari',
-      'Februari',
-      'Maret',
+      'January',
+      'February',
+      'March',
       'April',
-      'Mei',
-      'Juni',
-      'Juli',
-      'Agustus',
+      'May',
+      'June',
+      'July',
+      'August',
       'September',
-      'Oktober',
+      'October',
       'November',
       'Desember'
     ];
@@ -66,15 +66,17 @@ class Transactions extends Component {
   render() {
     const { transactions } = this.state;
     const transactionsArray = Object.values(transactions);
+    let transactionList;
 
-    const transactionList = transactionsArray.length ? (
-      transactionsArray
-        .filter(trans => {
-          return trans.beneficiary_name
-            .toLowerCase()
-            .includes(this.props.filterText.toLowerCase());
-        })
-        .map(trans => {
+    if (transactionsArray.length) {
+      let temp = transactionsArray.filter(trans => {
+        return trans.beneficiary_name
+          .toLowerCase()
+          .includes(this.props.filterText.toLowerCase());
+      });
+
+      if (temp.length) {
+        transactionList = temp.map(trans => {
           return (
             <div
               className={`transaction-list__container ${trans.status.toLowerCase()}`}
@@ -82,12 +84,12 @@ class Transactions extends Component {
             >
               <div className='info__container'>
                 <div className='bank-name__container'>
-                  <span className='bank-namme__detail'>
-                    {this.formatBankName(trans.beneficiary_bank)}
-                  </span>
-                  <FaArrowRight className='arrow-icon' />
                   <span className='bank-name__detail'>
                     {this.formatBankName(trans.sender_bank)}
+                  </span>
+                  <FaArrowRight className='arrow-icon' />
+                  <span className='bank-namme__detail'>
+                    {this.formatBankName(trans.beneficiary_bank)}
                   </span>
                 </div>
                 <p className='m0'>{trans.beneficiary_name.toUpperCase()}</p>
@@ -105,10 +107,13 @@ class Transactions extends Component {
               </div>
             </div>
           );
-        })
-    ) : (
-      <div className='loader'></div>
-    );
+        });
+      } else {
+        return <div className='no-result'>No Results</div>;
+      }
+    } else {
+      return <div className='loader'></div>;
+    }
 
     return <div className='container__transaction'>{transactionList}</div>;
   }

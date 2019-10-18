@@ -49,6 +49,10 @@
   margin: 0 5px;
 }
 
+.no-result {
+  margin-left: 10px;
+}
+
 .loader {
   border: 10px solid #f3f3f3;
   border-radius: 50%;
