@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Transactions.css';
 import Transaction from './Transaction';
+import { cors, config } from '../../Config';
 
 class TransactionList extends Component {
   state = {
-    transactions: []
+    transactions: [],
+    error: false
   };
 
-  getData() {
-    axios
-      .get(
-        'https://cors-anywhere.herokuapp.com/https://nextar.flip.id/frontend-test'
-      )
+  async getData() {
+    await axios
+      .get(cors + 'https://nextar.flip.id/frontend-test', config)
       .then(res => {
         this.setState({
           transactions: res.data
         });
       })
       .catch(error => {
-        console.log(error);
+        this.setState({
+          error: true
+        });
+        document.getElementById('error').innerHTML = error;
       });
   }
 
@@ -33,14 +36,14 @@ class TransactionList extends Component {
     let transactionList;
 
     if (transactionsArray.length) {
-      let temp = transactionsArray.filter(trans => {
+      let arrayFilter = transactionsArray.filter(trans => {
         return trans.beneficiary_name
           .toLowerCase()
           .includes(this.props.filterText.toLowerCase());
       });
 
-      if (temp.length) {
-        transactionList = temp.map(trans => {
+      if (arrayFilter.length) {
+        transactionList = arrayFilter.map(trans => {
           return (
             <Transaction
               key={trans.id}
@@ -61,7 +64,11 @@ class TransactionList extends Component {
         );
       }
     } else {
-      return <div className='loader'></div>;
+      return this.state.error ? (
+        <p id='error' className='no-result'></p>
+      ) : (
+        <div className='loader'></div>
+      );
     }
 
     return <div className='container__transaction'>{transactionList}</div>;

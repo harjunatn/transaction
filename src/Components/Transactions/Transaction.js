@@ -40,8 +40,10 @@ class Transaction extends Component {
     const trans = this.props;
     return (
       <div
-        className={`transaction-list__container ${trans.status.toLowerCase()}`}
         key={trans.id}
+        className={`transaction-list__container ${trans.status.toLowerCase()} ${
+          trans.id
+        }`}
       >
         <div className='info__container'>
           <div className='bank-name__container'>
