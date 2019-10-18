@@ -1,27 +1,7 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import { FaArrowRight } from 'react-icons/fa';
 
 class Transaction extends Component {
-  //   state = {
-  //     transactions: []
-  //   };
-
-  //   getData() {
-  //     axios
-  //       .get(
-  //         'https://cors-anywhere.herokuapp.com/https://nextar.flip.id/frontend-test'
-  //       )
-  //       .then(res => {
-  //         this.setState({
-  //           transactions: res.data
-  //         });
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
-
   changeDateFormat = e => {
     let date = e.split(' ')[0];
     let splitDate = date.split('-');
@@ -56,35 +36,33 @@ class Transaction extends Component {
     return string;
   };
 
-  //   componentDidMount() {
-  //     this.getData();
-  //   }
   render() {
+    const trans = this.props;
     return (
       <div
-        className={`transaction-list__container ${this.props.status.toLowerCase()}`}
-        key={this.props.id}
+        className={`transaction-list__container ${trans.status.toLowerCase()}`}
+        key={trans.id}
       >
         <div className='info__container'>
           <div className='bank-name__container'>
             <span className='bank-name__detail'>
-              {this.formatBankName(this.props.sender_bank)}
+              {this.formatBankName(trans.sender_bank)}
             </span>
             <FaArrowRight className='arrow-icon' />
             <span className='bank-namme__detail'>
-              {this.formatBankName(this.props.beneficiary_bank)}
+              {this.formatBankName(trans.beneficiary_bank)}
             </span>
           </div>
-          <p className='m0'>{this.props.beneficiary_name.toUpperCase()}</p>
-          <span>{this.formatCurrency(this.props.amount)}</span>
+          <p className='m0'>{trans.beneficiary_name.toUpperCase()}</p>
+          <span>{this.formatCurrency(trans.amount)}</span>
           <span className='dot'> . </span>
-          <span>{this.changeDateFormat(this.props.completed_at)}</span>
+          <span>{this.changeDateFormat(trans.completed_at)}</span>
         </div>
         <div className='status__container'>
-          <div className={`status-detail ${this.props.status.toLowerCase()}`}>
+          <div className={`status-detail ${trans.status.toLowerCase()}`}>
             <p className='m0'>
-              {this.props.status.charAt(0).toUpperCase() +
-                this.props.status.slice(1).toLowerCase()}
+              {trans.status.charAt(0).toUpperCase() +
+                trans.status.slice(1).toLowerCase()}
             </p>
           </div>
         </div>
