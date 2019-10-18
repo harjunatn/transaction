@@ -1,0 +1,79 @@
+.transaction-list__container {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-list__container.success {
+  border-left: 10px solid #56b586;
+}
+
+.transaction-list__container.pending {
+  border-left: 10px solid #ecec00;
+}
+
+.status-detail {
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-detail.success {
+  background-color: #56b586;
+}
+
+.status-detail.pending {
+  background-color: #ecec00;
+}
+
+.dot {
+  font-size: 30px;
+  line-height: 0;
+  font-weight: 900;
+}
+
+.bank-namme__detail {
+  text-transform: capitalize;
+}
+
+.bank-name__container {
+  font-weight: 600;
+}
+
+.arrow-icon {
+  margin: 0 5px;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #fd6542;
+  width: 70px;
+  height: 70px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

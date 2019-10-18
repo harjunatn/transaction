@@ -1,0 +1,35 @@
+/* .searc-box__container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+} */
+
+.search-box__input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  padding-left: 40px;
+  margin: 10px 0;
+}
+
+::placeholder {
+  color: #ddd;
+}
+
+.search-box__input:focus {
+  outline: none;
+}
+
+.searc-box__container {
+  position: relative;
+}
+
+.search-icon {
+  color: #ddd;
+  position: absolute;
+  top: 27px;
+  left: 15px;
+  font-size: 20px;
+}
