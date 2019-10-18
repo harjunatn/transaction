@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Transactions from './Components/Transactions/Transactions';
+import TransactionList from './Components/Transactions/TransactionList';
 import Searchbox from './Components/Searchbox/Searchbox';
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
       <div className='App'>
         <div className='container'>
           <Searchbox handleInput={this.handleInput} />
-          <Transactions filterText={this.state.filterText} />
+          <TransactionList filterText={this.state.filterText} />
         </div>
       </div>
     );
